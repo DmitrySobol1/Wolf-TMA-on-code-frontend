@@ -1,0 +1,6 @@
+html, body {
+    touch-action: manipulation; /* Отключает масштабирование при двойном клике */
+    user-select: none; /* Отключает выделение текста */
+    background-color: grey;
+    
+  }
