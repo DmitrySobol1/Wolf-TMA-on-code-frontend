@@ -11,7 +11,7 @@ const App = () => {
         console.log('clicked')
         setScore(score+1)
         
-        axios.post('/scoreincrement', {
+        axios.post('/api/scoreincrement', {
             tlgid: 20,
           })
           .then(response => {
