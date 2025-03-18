@@ -1,6 +1,6 @@
 html, body {
     touch-action: manipulation; /* Отключает масштабирование при двойном клике */
     user-select: none; /* Отключает выделение текста */
-    background-color: rgb(179, 194, 202);
+    background-color: rgb(103, 247, 244);
     
   }

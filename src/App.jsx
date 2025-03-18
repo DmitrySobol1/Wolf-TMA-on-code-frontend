@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 const App = () => {
 
-    const [score,setScore] = useState(1218)
+    const [score,setScore] = useState(1234)
 
     function clickHandler() {
         console.log('clicked')
