@@ -9,7 +9,7 @@ const FirstEnter = ({ setFirstEnter }) => {
   const navigate = useNavigate(); // Хук для навигации
   
 
-  const handleChange = (event) => {
+  const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
   };
 
@@ -52,7 +52,7 @@ const FirstEnter = ({ setFirstEnter }) => {
     <div className={style.popup}>
       <div>
         <label htmlFor="dropdown">Выберите язык:</label>
-        <select id="dropdown" value={language} onChange={handleChange}>
+        <select id="dropdown" value={language} onChange={handleLanguageChange}>
           <option value="ru">русский</option>
           <option value="en">english</option>
           <option value="de">deutch</option>

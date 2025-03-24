@@ -1,0 +1,58 @@
+.container {
+    padding-top: 100px;
+    text-align: center;
+
+    /* padding-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; 
+    margin: auto 0;
+    height: 80vh; */
+} 
+
+.scoreWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.coin {
+    width: 30px;
+    height: 30px;
+    /* display: block; */
+}
+
+.score {
+    font-size: 30px;
+    margin-right: 10px;
+    
+}
+
+.i {
+    width: 18px;
+}
+
+
+.energyWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+.battery {
+    width: auto;
+    height: 10px;
+    /* margin-right: 10px; */
+}
+
+.wolf {
+    width: 70%;
+    max-width: 350px;
+}

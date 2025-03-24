@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { Routes, Route, Router } from "react-router";
+import { useState,useEffect } from 'react';
 // import ReactDOM from 'react-dom/client';
 // // import { BrowserRouter } from "react-router";
 
@@ -11,72 +12,32 @@ import Game from './Components/Game/Game'
 import Referal from './Components/Referal/Referal'
 import Navigations from './Components/Navigations/Navigations'
 import Exchange from './Components/Exchange/Exchange'
+import Layout from './Components/Layout/Layout'
+import Yellowbg from './Components/Yellowbg/Yellowbg'
+import Level from './Components/Level/Level'
 
 
 
-import { useState,useEffect } from 'react';
-
+export const LanguageContext = createContext();
+export const userLevelContext = createContext();
 
 const App = () => {
-  // const [result, setResult] = useState('');
-
-  // Используем useEffect для выполнения запроса только при монтировании компонента
-  // useEffect(() => {
-  //   axios.post('/api/enter', {
-  //     tlgid: 777
-  //   })
-  //     .then(response => {
-  //       console.log('Ответ от сервера:', response.data.result);
-  //       if (response.data.result === 'created') {
-  //         setResult('created');
-          
-  //       } else if (response.data.result === 'exist') {
-  //         console.log('Ответ от сервера:', response.data);
-  //         setResult('exist');
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error('Ошибка при выполнении запроса:', error);
-  //     });
-  // }, []); 
+  
+const [language, setLanguage] = useState('ru');
+const [userLevel,setUserLevel] = useState('')
 
 
-  // return (
-  //   <>
-  //     {result === 'created' ? (
-  //       <>
-  //       <Navigations />
-  //       <FirstEnter />
-  //       </>
-        
-  //     ) : (
-  //       <>
-  //         <Navigations />
-          
-  //         <Routes>
-  //           <Route path="/" element={<div>main</div>} />
-  //           <Route path="/game" element={<Game />} />
-  //           <Route path="/referal" element={<Referal />} />
-  //           <Route path="/exchange" element={<Exchange />} />
-  //         </Routes>
-          
-  //       </>
-  //     )}
-  //   </>
-  // );
-
-
-  return (
+return (
    
         <>
-          <Navigations />
-          
-          <Routes>
-            <Route path="/" element={<Game />} />
-            <Route path="/referal" element={<Referal />} />
-            <Route path="/exchange" element={<Exchange />} />
-          </Routes>
-          
+        <LanguageContext.Provider value = {{language, setLanguage}}>
+        <userLevelContext.Provider value = {{userLevel,setUserLevel}}>
+            <Level/>
+            <Yellowbg />
+            <Layout />
+            <Navigations />
+            </userLevelContext.Provider>
+        </LanguageContext.Provider>        
         </>
    
   );
