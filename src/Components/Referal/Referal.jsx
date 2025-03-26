@@ -8,33 +8,43 @@ import style from './Referal.module.css';
 import i from '../../img/i.png';
 import imgPresent from '../../img/present.png';
 import addFriend from '../../img/addfriend.png';
-import {TEXTS} from './texts'
+import { TEXTS } from './texts';
 
-<script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+window.Telegram.WebApp.enableClosingConfirmation()
+// const tlgid=777
 
 
 const Referal = () => {
-  const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
+  const { isShowBottomModal, setShowBottomModal } =
+    useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
   const { language, setLanguage } = useContext(LanguageContext);
 
-   const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText } = TEXTS[language]
-   
+  const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText } =
+    TEXTS[language];
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
     setBottomModalText('referal');
   }
 
+  function btnAddFriendHandler() {
+    const temptlgid = tlgid
+    const templatelink = '12345678-ed1e-4477-8e19-1b8e71ab2689';
+    let newId = temptlgid.toString() + 'e';
+    const firstPart = newId.padEnd(8, '0').slice(0, 8); 
+    const secondPart = newId.padEnd(12, '0').slice(8, 12); 
+    const thirdPart = templatelink.split('-').slice(2).join('-');
+    let reflink = `${firstPart}-${secondPart}-${thirdPart}`;
 
-  function btnAddFriendHandler(){
- 
-    const msgtxt = 'Заходи в игру и забирай 1000 баллов от меня:'
-    const link = 'https://telegram.me/wolf_games_bot?start'
-    window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${msgtxt} ${link}`); 
-  
-}
+    const msgtxt = 'Заходи в игру и забирай 1000 баллов от меня:';
+    const link = `https://telegram.me/wolf_games_bot?start=${reflink}`
 
+    window.Telegram.WebApp.openTelegramLink(
+      `https://t.me/share/url?url=${msgtxt} ${link}`
+    );
+  }
 
   return (
     <>
@@ -47,9 +57,7 @@ const Referal = () => {
             </button>
           </div>
 
-          <div className={style.subtitleText}>
-            {subtitle}
-          </div>
+          <div className={style.subtitleText}>{subtitle}</div>
 
           <div className={style.greyWrapper}>
             <div>
@@ -63,8 +71,11 @@ const Referal = () => {
           </div>
 
           <div>
-            <button className={style.btnAddFriend} onClick={btnAddFriendHandler}>
-              <img src={addFriend} className={style.iconBtnAddFriend}/>
+            <button
+              className={style.btnAddFriend}
+              onClick={btnAddFriendHandler}
+            >
+              <img src={addFriend} className={style.iconBtnAddFriend} />
               <span>{btnText}</span>
             </button>
           </div>
