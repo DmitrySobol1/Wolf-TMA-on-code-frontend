@@ -10,7 +10,7 @@ import imgPresent from '../../img/present.png';
 import addFriend from '../../img/addfriend.png';
 import {TEXTS} from './texts'
 
-
+<script src="https://telegram.org/js/telegram-web-app.js?56"></script>
 
 
 const Referal = () => {
@@ -25,6 +25,16 @@ const Referal = () => {
     setShowBottomModal(!isShowBottomModal);
     setBottomModalText('referal');
   }
+
+
+  function btnAddFriendHandler(){
+ 
+    const msgtxt = 'Заходи в игру и забирай 1000 баллов от меня:'
+    const link = 'https://telegram.me/wolf_games_bot?start'
+    window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${msgtxt} ${link}`); 
+  
+}
+
 
   return (
     <>
@@ -53,7 +63,7 @@ const Referal = () => {
           </div>
 
           <div>
-            <button className={style.btnAddFriend}>
+            <button className={style.btnAddFriend} onClick={btnAddFriendHandler}>
               <img src={addFriend} className={style.iconBtnAddFriend}/>
               <span>{btnText}</span>
             </button>
