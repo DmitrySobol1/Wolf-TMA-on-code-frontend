@@ -68,6 +68,7 @@ button, input[type="submit"] {
     background-color: transparent;
     background: none;
     cursor: pointer;
+	outline: none;
 }
 
 input:focus, input:active,

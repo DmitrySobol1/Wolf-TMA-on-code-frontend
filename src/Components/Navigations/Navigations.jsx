@@ -29,21 +29,21 @@ const Navigations = () => {
   };
 
   const playMap = {
-    ru: <div>{texts.ru.game}</div>,
-    en: <div>{texts.en.game}</div>,
-    de: <div>{texts.de.game}</div>,
+    ru: <>{texts.ru.game}</>,
+    en: <>{texts.en.game}</>,
+    de: <>{texts.de.game}</>,
   };
 
   const friendMap = {
-    ru: <div>{texts.ru.friend}</div>,
-    en: <div>{texts.en.friend}</div>,
-    de: <div>{texts.de.friend}</div>,
+    ru: <>{texts.ru.friend}</>,
+    en: <>{texts.en.friend}</>,
+    de: <>{texts.de.friend}</>,
   };
 
   const changeMap = {
-    ru: <div>{texts.ru.change}</div>,
-    en: <div>{texts.en.change}</div>,
-    de: <div>{texts.de.change}</div>,
+    ru: <>{texts.ru.change}</>,
+    en: <>{texts.en.change}</>,
+    de: <>{texts.de.change}</>,
   };
 
   return (
@@ -57,7 +57,7 @@ const Navigations = () => {
               <div>
                 <img src={gameImg} className={style.btnIcon} alt="Game" />
               </div>
-              <div>{playMap[language]}</div>
+              <div className={style.text}>{playMap[language]}</div>
             </div>
           )}
         </NavLink>
@@ -66,9 +66,9 @@ const Navigations = () => {
           {({ isActive }) => (
             <div className={isActive ? style.buttonActive : style.button}>
               <div>
-                <img src={gameImg} className={style.btnIcon} alt="Game" />
+                <img src={friendImg} className={style.btnIcon} alt="Game" />
               </div>
-              <div>{friendMap[language]}</div>
+              <div className={style.text}>{friendMap[language]}</div>
             </div>
           )}
         </NavLink>
@@ -80,9 +80,9 @@ const Navigations = () => {
           {({ isActive }) => (
             <div className={isActive ? style.buttonActive : style.button}>
               <div>
-                <img src={gameImg} className={style.btnIcon} alt="Game" />
+                <img src={changeImg} className={style.btnIcon} alt="Game" />
               </div>
-              <div>{changeMap[language]}</div>
+              <div className={style.text}>{changeMap[language]}</div>
             </div>
           )}
         </NavLink>

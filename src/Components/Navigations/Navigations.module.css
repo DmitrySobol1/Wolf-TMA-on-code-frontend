@@ -49,6 +49,7 @@ align-items: center;
     
 }
 
-.active {
-    background-color: greenyellow;
+.text {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

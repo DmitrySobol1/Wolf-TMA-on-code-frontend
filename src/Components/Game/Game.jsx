@@ -11,15 +11,28 @@ import battery from '../../img/battery-energy2.png';
 import wolf1 from '../../img/wolf1.png';
 import wolf2 from '../../img/wolf2.png';
 import wolf3 from '../../img/wolf3.png';
+import BottomModal from '../BottomModal/BottomModal'
+import { BottomModalContext } from '../../App';
+import { TextForBottomModalContext } from '../../App';
+
 
 const Game = () => {
   const [isFirstEnter, setFirstEnter] = useState(false);
   const [score, setScore] = useState('');
   const [energy, setEnergy] = useState('');
   const [wolfPicture, setWolfPicture] = useState(wolf1);
+  const [isWolfButtonActive,setWolfButtonActive] = useState(true)
 
   const { language, setLanguage } = useContext(LanguageContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);
+  const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
+  const { setBottomModalText } = useContext(TextForBottomModalContext);
+
+  function iBtnHandler(){
+    setShowBottomModal(!isShowBottomModal)
+    setBottomModalText('game')
+  }
+
 
   const texts = {
     ru: {
@@ -46,19 +59,22 @@ const Game = () => {
   };
 
   const clickHandler = () => {
-    setScore(score + 1);
-    setEnergy(energy - 1);
-
-    axios
-      .post('/api/scoreincrement', {
-        tlgid: 777,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error('Ошибка:', error);
-      });
+    if (isWolfButtonActive){
+      
+      setScore(score + 1);
+      setEnergy(energy - 1);
+  
+      axios
+        .post('/api/scoreincrement', {
+          tlgid: 777,
+        })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error('Ошибка:', error);
+        });
+    }
   };
 
   // для смены картинки
@@ -96,6 +112,32 @@ const Game = () => {
     }
   }, [score]);
 
+
+
+ // для отслеживания энергии
+ useEffect(() => {
+  if (energy === 0) {
+    console.log('энергии 0');
+    setShowBottomModal(!isShowBottomModal)
+    setBottomModalText('emptyEnergy')
+    setWolfButtonActive(false)
+
+    // axios
+    //   .post('/api/setuserLevel', {
+    //     tlgid: 777,
+    //     userLevel: 2,
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Ошибка:', error);
+    //   });
+  } }, [energy]);
+
+
+
+
   // для рендера
   useEffect(() => {
     axios
@@ -131,6 +173,9 @@ const Game = () => {
 
   return (
     <>
+    {/* {isShowBottomModal && <BottomModal props='game' /> } */}
+    {/* <BottomModal props='game' />  */}
+
       {isFirstEnter ? (
         <FirstEnter setFirstEnter={setFirstEnter} />
       ) : (
@@ -142,7 +187,7 @@ const Game = () => {
               </div>
               <div className={style.score}>{score}</div>
               <>
-                <img src={i} className={style.i} />
+                <button onClick={iBtnHandler}><img src={i} className={style.i} /></button>
               </>
             </div>
 

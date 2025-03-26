@@ -1,15 +1,23 @@
 import React, { useContext } from 'react';
 import style from './Level.module.css';
+import BottomModal from '../BottomModal/BottomModal'
 import { useState } from 'react';
 import { LanguageContext } from '../../App';
 import { userLevelContext } from '../../App';
+import { BottomModalContext } from '../../App';
+import { TextForBottomModalContext } from '../../App';
 import axios from '../../axios';
 import wolficon from '../../img/wolfIcon.png'
 import i from '../../img/i.png'
 
+
+
 const Level = () => {
   const { language, setLanguage } = useContext(LanguageContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);
+  const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
+  const { setBottomModalText } = useContext(TextForBottomModalContext);
+ 
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -26,6 +34,12 @@ const Level = () => {
         console.error('Ошибка:', error);
       });
   };
+
+
+  const iBtnHandler = ()=> {
+    setShowBottomModal(!isShowBottomModal)
+    setBottomModalText('level')
+  }
 
   const texts = {
     ru: {
@@ -47,13 +61,16 @@ const Level = () => {
 
   return (
     <>
+    
+    {/* {isShowBottomModal && <BottomModal props='level' /> } */}
+
       <div className={style.level}>
         <div className={style.container}>
             <div className={style.left}>
           
             <div><img src={wolficon} className={style.wolficon}/></div>
             <div>{levelMap[language]} : {userLevel}/3</div>
-            <img src={i} className={style.i}/>
+            <button onClick={iBtnHandler}><img src={i} className={style.i}/></button>
           
           </div>
 

@@ -15,28 +15,37 @@ import Exchange from './Components/Exchange/Exchange'
 import Layout from './Components/Layout/Layout'
 import Yellowbg from './Components/Yellowbg/Yellowbg'
 import Level from './Components/Level/Level'
+import BottomModal from './Components/BottomModal/BottomModal'
 
 
 
 export const LanguageContext = createContext();
 export const userLevelContext = createContext();
+export const BottomModalContext = createContext();
+export const TextForBottomModalContext = createContext();
 
 const App = () => {
   
 const [language, setLanguage] = useState('ru');
 const [userLevel,setUserLevel] = useState('')
-
+const [isShowBottomModal,setShowBottomModal] = useState(false)
+const [bottomModalText,setBottomModalText] = useState('')
 
 return (
    
         <>
         <LanguageContext.Provider value = {{language, setLanguage}}>
         <userLevelContext.Provider value = {{userLevel,setUserLevel}}>
-            <Level/>
-            <Yellowbg />
-            <Layout />
-            <Navigations />
-            </userLevelContext.Provider>
+        <BottomModalContext.Provider value = {{isShowBottomModal,setShowBottomModal}}>
+        <TextForBottomModalContext.Provider value = {{setBottomModalText}}>
+              <Level/>
+              <Yellowbg />
+              <Layout />
+              {isShowBottomModal && <BottomModal props={bottomModalText} /> }
+              <Navigations />
+        </TextForBottomModalContext.Provider>
+        </BottomModalContext.Provider>
+        </userLevelContext.Provider>
         </LanguageContext.Provider>        
         </>
    
