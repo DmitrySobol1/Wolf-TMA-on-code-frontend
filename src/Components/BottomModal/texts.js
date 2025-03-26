@@ -78,6 +78,22 @@ export const TEXTS = {
             text: 'text empty energy on deutch',
         }
     },
+
+    newLevelAchived: {
+        ru: {
+            title: 'Новый уровень',
+            text: 'текст про новый уровень',
+            
+          },
+          en: {
+            title: 'New level',
+            text: 'text about new level',
+        },
+        de: {
+            title: 'New level on deutch',
+            text: 'text new level on deutch',
+        }
+    },
   };
 
 

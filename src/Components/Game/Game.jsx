@@ -15,6 +15,8 @@ import BottomModal from '../BottomModal/BottomModal'
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 
+const level2 = 1400;
+const level3 = 1430;
 
 const Game = () => {
   const [isFirstEnter, setFirstEnter] = useState(false);
@@ -79,10 +81,11 @@ const Game = () => {
 
   // для смены картинки
   useEffect(() => {
-    if (score == 1150) {
-      console.log('сейчас =1130');
+    if (score == level2) {
       setUserLevel(2);
       setWolfPicture(wolf2);
+      setShowBottomModal(!isShowBottomModal);
+    setBottomModalText('newLevelAchived');
 
       axios
         .post('/api/setuserLevel', {
@@ -95,9 +98,11 @@ const Game = () => {
         .catch((error) => {
           console.error('Ошибка:', error);
         });
-    } else if (score == 1160) {
+    } else if (score == level3) {
       setUserLevel(3);
       setWolfPicture(wolf3);
+      setShowBottomModal(!isShowBottomModal);
+    setBottomModalText('newLevelAchived');
       axios
         .post('/api/setuserLevel', {
           tlgid: 777,
