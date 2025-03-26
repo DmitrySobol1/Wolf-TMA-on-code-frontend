@@ -51,20 +51,43 @@ const Navigations = () => {
       <div className={style.wrapper}>
         {/* <nav> */}
 
-        <div className={style.button}>
-          <div><img src={gameImg} className={style.btnIcon}/></div>
-          <div><NavLink to="/">{playMap[language]}</NavLink></div>
-        </div>
+        <NavLink to="/">
+          {({ isActive }) => (
+            <div className={isActive ? style.buttonActive : style.button}>
+              <div>
+                <img src={gameImg} className={style.btnIcon} alt="Game" />
+              </div>
+              <div>{playMap[language]}</div>
+            </div>
+          )}
+        </NavLink>
 
-        <div className={style.button}>
-        <div><img src={friendImg} className={style.btnIcon}/></div>
-         <div> <NavLink to="/referal">{friendMap[language]}</NavLink></div>
-        </div>
-        
-        <div className={style.button}>
-        <div><img src={changeImg} className={style.btnIcon}/></div>
-         <div> <NavLink to="/exchange">{changeMap[language]}</NavLink></div>
-        </div>
+        <NavLink to="/referal">
+          {({ isActive }) => (
+            <div className={isActive ? style.buttonActive : style.button}>
+              <div>
+                <img src={gameImg} className={style.btnIcon} alt="Game" />
+              </div>
+              <div>{friendMap[language]}</div>
+            </div>
+          )}
+        </NavLink>
+
+      
+
+
+<NavLink to="/exchange">
+          {({ isActive }) => (
+            <div className={isActive ? style.buttonActive : style.button}>
+              <div>
+                <img src={gameImg} className={style.btnIcon} alt="Game" />
+              </div>
+              <div>{changeMap[language]}</div>
+            </div>
+          )}
+        </NavLink>
+
+
 
         {/* </nav> */}
       </div>
