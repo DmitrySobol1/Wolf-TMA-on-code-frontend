@@ -33,6 +33,16 @@ const Game = () => {
     useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
 
+
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get('lang');
+  if (lang !== null){
+    setLanguage(lang)
+  }
+  console.log('lang=',lang)
+
+
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
     setBottomModalText('game');

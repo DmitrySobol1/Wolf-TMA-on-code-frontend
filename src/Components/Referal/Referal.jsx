@@ -22,7 +22,7 @@ const Referal = () => {
   const { setBottomModalText } = useContext(TextForBottomModalContext);
   const { language, setLanguage } = useContext(LanguageContext);
 
-  const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText } =
+  const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText, tlgMessage, languageInteger } =
     TEXTS[language];
 
   function iBtnHandler() {
@@ -38,8 +38,10 @@ const Referal = () => {
     const secondPart = newId.padEnd(12, '0').slice(8, 12); 
     const thirdPart = templatelink.split('-').slice(2).join('-');
     let reflink = `${firstPart}-${secondPart}-${thirdPart}`;
+    reflink = reflink.slice(0, -2)
+    reflink = reflink + languageInteger
 
-    const msgtxt = 'Заходи в игру и забирай 1000 баллов от меня:';
+    const msgtxt = tlgMessage;
     const link = `https://telegram.me/wolf_games_bot?start=${reflink}`
 
     window.Telegram.WebApp.openTelegramLink(
