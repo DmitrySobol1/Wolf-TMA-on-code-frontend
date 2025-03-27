@@ -27,22 +27,8 @@ const BottomModal = (props) => {
     // };
   }, []); // Пустой массив = нет зависимостей
 
-  // return (
-  //   <div className={style.modal}>
-  //     <button onClick={closeBtnHandler}>
-  //       <span className={style.closeBtn}>&times;</span>
-  //     </button>
-  //     <div className={style.title}>{title}</div>
-  //     <div>{text}</div>
-  //   </div>
-  // );
-
   return (
-    <div
-      className={`${style.modal} ${
-        isShowBottomModal ? style.modalVisible : ''
-      }`}
-    >
+    <div className={style.modal}>
       <button onClick={closeBtnHandler}>
         <span className={style.closeBtn}>&times;</span>
       </button>

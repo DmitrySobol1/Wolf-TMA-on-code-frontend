@@ -14,6 +14,7 @@ import wolf3 from '../../img/wolf3.png';
 import BottomModal from '../BottomModal/BottomModal';
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
 const tlgid = 777;
@@ -34,14 +35,15 @@ const Game = () => {
   const { setBottomModalText } = useContext(TextForBottomModalContext);
 
 
-  
+  const [floatingNumbers, setFloatingNumbers] = useState([]);
+
+
   const urlParams = new URLSearchParams(window.location.search);
   const lang = urlParams.get('lang');
-  if (lang !== null){
-    setLanguage(lang)
+  if (lang !== null) {
+    setLanguage(lang);
   }
-  console.log('lang=',lang)
-
+  console.log('lang=', lang);
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -72,10 +74,25 @@ const Game = () => {
     de: <>{texts.de.energy}</>,
   };
 
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if (isWolfButtonActive) {
       setScore(score + 1);
       setEnergy(energy - 1);
+
+
+
+      const rect = e.currentTarget.getBoundingClientRect();
+    setFloatingNumbers(prev => [
+      ...prev,
+      {
+        id: Date.now(),
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+        value: '+1'
+      }
+    ]);
+
+
 
       axios
         .post('/api/scoreincrement', {
@@ -211,6 +228,47 @@ const Game = () => {
                 {energyMap[language]}: {energy}/1000
               </div>
             </div>
+
+
+
+            <AnimatePresence>
+        {floatingNumbers.map((num) => (
+          <motion.div
+            key={num.id}
+            initial={{
+              opacity: 1,
+              scale: 1,
+              x: num.x,
+              y: num.y,
+              position: 'absolute',
+              color: '#ffffff',
+              fontSize: '24px',
+              fontWeight: 'bold',
+              pointerEvents: 'none',
+              textShadow: '0 0 5px rgba(0,0,0,0.5)',
+              zIndex: 100
+            }}
+            animate={{
+              y: num.y - 100,
+              opacity: 0,
+              scale: 1.5
+            }}
+            transition={{
+              duration: 1,
+              ease: 'easeOut'
+            }}
+            onAnimationComplete={() => {
+              setFloatingNumbers(prev => prev.filter(n => n.id !== num.id));
+            }}
+          >
+            {num.value}
+          </motion.div>
+        ))}
+      </AnimatePresence>
+
+
+
+
 
             <button onClick={clickHandler} className={style.wolf}>
               <img src={wolfPicture} />
