@@ -60,7 +60,7 @@ const Exchange = () => {
             <div>
               <div className={style.boldText}>{redTitle}</div>
               <div>{redRow}</div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
