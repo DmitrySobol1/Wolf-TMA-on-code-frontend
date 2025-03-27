@@ -10,9 +10,9 @@ import imgPresent from '../../img/present.png';
 import addFriend from '../../img/addfriend.png';
 import { TEXTS } from './texts';
 
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-window.Telegram.WebApp.enableClosingConfirmation()
-// const tlgid=777
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+// window.Telegram.WebApp.enableClosingConfirmation()
+const tlgid=777
 
 
 const Referal = () => {

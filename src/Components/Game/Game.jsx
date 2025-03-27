@@ -11,10 +11,12 @@ import battery from '../../img/battery-energy2.png';
 import wolf1 from '../../img/wolf1.png';
 import wolf2 from '../../img/wolf2.png';
 import wolf3 from '../../img/wolf3.png';
-import BottomModal from '../BottomModal/BottomModal'
+import BottomModal from '../BottomModal/BottomModal';
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 
+const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+// const tlgid = 777;
 const level2 = 1400;
 const level3 = 1430;
 
@@ -23,18 +25,18 @@ const Game = () => {
   const [score, setScore] = useState('');
   const [energy, setEnergy] = useState('');
   const [wolfPicture, setWolfPicture] = useState(wolf1);
-  const [isWolfButtonActive,setWolfButtonActive] = useState(true)
+  const [isWolfButtonActive, setWolfButtonActive] = useState(true);
 
   const { language, setLanguage } = useContext(LanguageContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);
-  const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
+  const { isShowBottomModal, setShowBottomModal } =
+    useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
 
-  function iBtnHandler(){
-    setShowBottomModal(!isShowBottomModal)
-    setBottomModalText('game')
+  function iBtnHandler() {
+    setShowBottomModal(!isShowBottomModal);
+    setBottomModalText('game');
   }
-
 
   const texts = {
     ru: {
@@ -61,14 +63,13 @@ const Game = () => {
   };
 
   const clickHandler = () => {
-    if (isWolfButtonActive){
-      
+    if (isWolfButtonActive) {
       setScore(score + 1);
       setEnergy(energy - 1);
-  
+
       axios
         .post('/api/scoreincrement', {
-          tlgid: 777,
+          tlgid: tlgid,
         })
         .then((response) => {
           console.log(response.data);
@@ -85,11 +86,11 @@ const Game = () => {
       setUserLevel(2);
       setWolfPicture(wolf2);
       setShowBottomModal(!isShowBottomModal);
-    setBottomModalText('newLevelAchived');
+      setBottomModalText('newLevelAchived');
 
       axios
         .post('/api/setuserLevel', {
-          tlgid: 777,
+          tlgid: tlgid,
           userLevel: 2,
         })
         .then((response) => {
@@ -102,10 +103,10 @@ const Game = () => {
       setUserLevel(3);
       setWolfPicture(wolf3);
       setShowBottomModal(!isShowBottomModal);
-    setBottomModalText('newLevelAchived');
+      setBottomModalText('newLevelAchived');
       axios
         .post('/api/setuserLevel', {
-          tlgid: 777,
+          tlgid: tlgid,
           userLevel: 3,
         })
         .then((response) => {
@@ -117,37 +118,33 @@ const Game = () => {
     }
   }, [score]);
 
+  // для отслеживания энергии
+  useEffect(() => {
+    if (energy === 0) {
+      console.log('энергии 0');
+      setShowBottomModal(!isShowBottomModal);
+      setBottomModalText('emptyEnergy');
+      setWolfButtonActive(false);
 
-
- // для отслеживания энергии
- useEffect(() => {
-  if (energy === 0) {
-    console.log('энергии 0');
-    setShowBottomModal(!isShowBottomModal)
-    setBottomModalText('emptyEnergy')
-    setWolfButtonActive(false)
-
-    // axios
-    //   .post('/api/setuserLevel', {
-    //     tlgid: 777,
-    //     userLevel: 2,
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Ошибка:', error);
-    //   });
-  } }, [energy]);
-
-
-
+      // axios
+      //   .post('/api/setuserLevel', {
+      //     tlgid: 777,
+      //     userLevel: 2,
+      //   })
+      //   .then((response) => {
+      //     console.log(response.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error('Ошибка:', error);
+      //   });
+    }
+  }, [energy]);
 
   // для рендера
   useEffect(() => {
     axios
       .post('/api/enter', {
-        tlgid: 777,
+        tlgid: tlgid,
       })
       .then((response) => {
         console.log('Ответ от сервера:', response.data.result);
@@ -160,10 +157,10 @@ const Game = () => {
           setEnergy(Number(response.data.energy));
           setLanguage(response.data.language);
           setUserLevel(response.data.userLevel);
-          if (response.data.userLevel==2){
-            setWolfPicture(wolf2)
-          } else if (response.data.userLevel==3){
-            setWolfPicture(wolf3)
+          if (response.data.userLevel == 2) {
+            setWolfPicture(wolf2);
+          } else if (response.data.userLevel == 3) {
+            setWolfPicture(wolf3);
           }
         }
       })
@@ -178,8 +175,8 @@ const Game = () => {
 
   return (
     <>
-    {/* {isShowBottomModal && <BottomModal props='game' /> } */}
-    {/* <BottomModal props='game' />  */}
+      {/* {isShowBottomModal && <BottomModal props='game' /> } */}
+      {/* <BottomModal props='game' />  */}
 
       {isFirstEnter ? (
         <FirstEnter setFirstEnter={setFirstEnter} />
@@ -192,7 +189,9 @@ const Game = () => {
               </div>
               <div className={style.score}>{score}</div>
               <>
-                <button onClick={iBtnHandler}><img src={i} className={style.i} /></button>
+                <button onClick={iBtnHandler}>
+                  <img src={i} className={style.i} />
+                </button>
               </>
             </div>
 
