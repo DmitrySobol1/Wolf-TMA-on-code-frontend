@@ -58,8 +58,34 @@
 .wolf {
     width: 80%;
     max-width: 350px;
+    -webkit-tap-highlight-color: transparent; /* Убираем подсветку */
+    -webkit-user-select: none;
+  touch-action: manipulation; /* Оптимизация для тач-устройств */
+  user-select: none; /* Запрещаем выделение текста */
+
+  outline: none;
+  
 }
 
 .wolf:active {
     transform: scale(0.99);
+    outline: none;
+    box-shadow: none;
+
   }
+
+
+  .wolf:focus {
+    outline: none !important;
+    box-shadow: none;
+  }
+
+
+
+
+  /* button {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    
+  }
+  
+  */
