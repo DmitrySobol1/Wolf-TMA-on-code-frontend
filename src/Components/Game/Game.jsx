@@ -15,8 +15,8 @@ import BottomModal from '../BottomModal/BottomModal';
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-// const tlgid = 777;
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
+const tlgid = 777;
 const level2 = 1400;
 const level3 = 1430;
 

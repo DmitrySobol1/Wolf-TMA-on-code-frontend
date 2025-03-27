@@ -9,10 +9,11 @@ import i from '../../img/i.png';
 import imgPresent from '../../img/present.png';
 import addFriend from '../../img/addfriend.png';
 import { TEXTS } from './texts';
+import ReferalList from './ReferalList/ReferalList'
 
-const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
+// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
 // window.Telegram.WebApp.enableClosingConfirmation()
-// const tlgid=777
+const tlgid=777
 
 
 const Referal = () => {
@@ -81,6 +82,8 @@ const Referal = () => {
           </div>
         </div>
       </div>
+
+      <div><ReferalList/></div>
     </>
   );
 };

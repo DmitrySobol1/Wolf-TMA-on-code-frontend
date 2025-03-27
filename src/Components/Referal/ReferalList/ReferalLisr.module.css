@@ -1,0 +1,32 @@
+.wrapper {
+    max-width: 350px;  
+    justify-content: center;
+    display: flex;
+    margin:0 auto;
+    /* flex-direction: column; */
+}
+
+.container {
+  
+    text-align: left;
+    width: 90%;
+    /* max-width: 350px; */
+}
+
+.boldText {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.list {
+    height: 150px;
+    overflow: auto;
+    
+}
+
+.item {
+    /* margin-top: 5px; */
+    /* margin-bottom: 5px; */
+    border-bottom: 1px solid #ffc843;
+    padding: 5px 0px;
+}
