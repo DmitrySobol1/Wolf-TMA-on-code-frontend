@@ -31,16 +31,16 @@ export const TEXTS = {
 
   referal: {
     ru: {
-      title: 'Тут про рефералов',
-      text: 'текст про рефералов',
+      title: 'Приглашайте друзей и зарабатывайте баллы',
+      text: 'за каждого приглашенного друга вы получаете 500 баллов и друг получает 1000 баллов',
     },
     en: {
-      title: 'About referal',
-      text: 'text about referal',
+      title: 'Invite friend and get extra points',
+      text: 'you will get extra 500 point for each invited friend. Your friend get 1000 point',
     },
     de: {
-      title: 'Referalen',
-      text: 'text referalen',
+      title: 'Freunde einladen und Extrapunkte erhalten',
+      text: 'erhalten Sie für jeden eingeladenen Freund 500 zusätzliche Punkte. Dein Freund erhält 1000 Punkte',
     },
   },
 
