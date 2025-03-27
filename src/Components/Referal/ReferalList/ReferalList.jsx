@@ -2,43 +2,26 @@ import React from 'react';
 import axios from '../../../axios';
 import { useState, useEffect, useContext } from 'react';
 import style from './ReferalLisr.module.css';
+import { LanguageContext } from '../../../App';
 
 // const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
 // window.Telegram.WebApp.enableClosingConfirmation()
 const tlgid = 666;
 
-// const ReferalList = () => {
-//   let referals = []
-//       axios
-//         .get('/api/getMyReferal', {
-//           params : {tlgid: tlgid},
-//         })
-//         .then((response) => {
-//           console.log('Ответ от сервера:', response.data);
-//           referals = response.data.map((data) => (data.referalNameFull))
-          
-//         })
-//         .catch((error) => {
-//           console.error('Ошибка при выполнении запроса:', error);
-//         });
-    
-//         console.log('re=',referals )
 
-//   return (
-//   <>
-//   <ul>
-//       {referals.map((referal, index) => (
-//         <li key={index}>{referal}</li>
-//       ))}
-//     </ul>
-
-//   </>
-//   );
-// };
 
 
 const ReferalList = () => {
   const [referals, setReferals] = useState([]); // Храним данные в состоянии
+  const { language, setLanguage } = useContext(LanguageContext);
+
+  const list = {
+    ru: <>Список друзей:</>,
+    en: <>List of friend:</>,
+    de: <>Freundesliste:</>,
+  }
+  
+
 
   useEffect(() => {
     axios.get('/api/getMyReferal', { params: { tlgid: tlgid } })
@@ -55,7 +38,7 @@ const ReferalList = () => {
     <>
     <div className = {style.wrapper}>
     <div className = {style.container}>
-      <div className = {style.boldText}>Список друзей:</div>
+      <div className = {style.boldText}>{list[language]}</div>
       <div className = {style.list}>
       {referals.map((referal, index) => (
         <div key={index} className = {style.item}>{index+1}. {referal}</div>

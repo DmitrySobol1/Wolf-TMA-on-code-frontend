@@ -1,5 +1,103 @@
+.screenWrappeer {
+    max-width: 350px;  
+    justify-content: center;
+    display: flex;
+    margin:0 auto;
+}
+
+.container {
+    padding-top: 70px;
+    text-align: left;
+    width: 90%;
+    /* max-width: 350px; */
+} 
+
+.titleWrapper {
+    display: flex;
+    justify-content: left;
+    gap:10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.titleText {
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .i {
     width: 18px;
     background-color: white;
     border-radius: 50%;
+}
+
+.subtitleText {
+    margin-bottom: 20px;
+}
+
+.greyWrapper {
+    display: flex;
+    background-color: #848484;
+    padding: 10px;
+    border-radius: 5px;
+    color: #161616;
+    margin-bottom: 40px;
+    align-items: center;
+    /* gap: 10px; */
+}
+
+.redWrapper {
+    display: flex;
+    background-color: salmon;
+    padding: 10px;
+    border-radius: 5px;
+    color: #161616;
+    margin-bottom: 40px;
+    align-items: center;
+      
+    /* gap: 10px; */
+}
+
+.imgPresent {
+    width: 35px;
+    height: 35px;
+}
+
+.boldText {
+    font-weight: bold;
+    text-align: left;
+}
+
+
+.btnAddFriend {
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background-color: #ffc843; 
+    border: 2px solid #FFF; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold;
+    color: #1f1f1f; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+.iconBtnAddFriend {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+.imgDiv {
+    width: 50px;
+    flex:none;
+    /* justify-content: center;
+    text-align: center; */
 }
