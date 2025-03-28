@@ -108,7 +108,7 @@ const Game = () => {
 
   // для смены картинки
   useEffect(() => {
-    if (score == level2) {
+    if (score === level2) {
       setUserLevel(2);
       setWolfPicture(wolf2);
       setShowBottomModal(!isShowBottomModal);
@@ -125,7 +125,7 @@ const Game = () => {
         .catch((error) => {
           console.error('Ошибка:', error);
         });
-    } else if (score == level3) {
+    } else if (score === level3) {
       setUserLevel(3);
       setWolfPicture(wolf3);
       setShowBottomModal(!isShowBottomModal);
@@ -183,9 +183,9 @@ const Game = () => {
           setEnergy(Number(response.data.energy));
           setLanguage(response.data.language);
           setUserLevel(response.data.userLevel);
-          if (response.data.userLevel == 2) {
+          if (response.data.userLevel === 2) {
             setWolfPicture(wolf2);
-          } else if (response.data.userLevel == 3) {
+          } else if (response.data.userLevel === 3) {
             setWolfPicture(wolf3);
           }
         }
@@ -211,18 +211,18 @@ const Game = () => {
           <div className={style.container}>
             <div className={style.scoreWrapper}>
               <div>
-                <img src={coin} className={style.coin} />
+                <img src={coin} className={style.coin} alt='coin' />
               </div>
               <div className={style.score}>{score}</div>
               <>
                 <button onClick={iBtnHandler}>
-                  <img src={i} className={style.i} />
+                  <img src={i} className={style.i} alt='info' />
                 </button>
               </>
             </div>
 
             <div className={style.energyWrapper}>
-              <img src={battery} className={style.battery} />
+              <img src={battery} className={style.battery} alt='battery' />
               <div className={style.energyText}>
                 {energyMap[language]}: {energy}/1000
               </div>
@@ -265,14 +265,15 @@ const Game = () => {
               ))}
             </AnimatePresence>
 
-            <button
+            <motion.button
               onClick={clickHandler}
               className={style.wolf}
               initial={false}
+              // whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
               whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
             >
-              <img src={wolfPicture} />
-            </button>
+              <img src={wolfPicture} alt='wolf'/>
+            </motion.button>
           </div>
         </>
       )}
