@@ -193,7 +193,7 @@ const Game = () => {
       .catch((error) => {
         console.error('Ошибка при выполнении запроса:', error);
       });
-  }, []);
+  }, [isFirstEnter]);
 
   // const handleLanguageChange = (event) => {
   //   setLanguage(event.target.value);
@@ -201,6 +201,7 @@ const Game = () => {
 
   return (
     <>
+      
       
       
       {isFirstEnter ? (
