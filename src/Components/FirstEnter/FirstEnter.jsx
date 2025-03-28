@@ -37,9 +37,9 @@ const FirstEnter = ({ setFirstEnter }) => {
   };
 
   const contentMap = {
-    ru: <div>{texts.ru.main}</div>,
-    en: <div>{texts.en.main}</div>,
-    de: <div>{texts.de.main}</div>,
+    ru: <>{texts.ru.main}</>,
+    en: <>{texts.en.main}</>,
+    de: <>{texts.de.main}</>,
   };
 
   const btnText = {
@@ -49,6 +49,7 @@ const FirstEnter = ({ setFirstEnter }) => {
   };
 
   return (
+    <div className = {style.wrapper}>
     <div className={style.popup}>
       <div>
         <label htmlFor="dropdown">Выберите язык:</label>
@@ -59,9 +60,10 @@ const FirstEnter = ({ setFirstEnter }) => {
         </select>
       </div>
 
-      {contentMap[language]}
+      <div className = {style.text}>{contentMap[language]}</div>
 
-      <button onClick={clickHandler}>{btnText[language]}</button>
+      <button onClick={clickHandler} className = {style.button}>{btnText[language]}</button>
+    </div>
     </div>
   );
 };

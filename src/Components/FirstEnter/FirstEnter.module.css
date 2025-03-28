@@ -1,4 +1,11 @@
-.popup {background-color: #ffc843;
+.wrapper {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.popup {
+background-color: #ffc843;
 width: 70%;
 border-radius: 10px;
 padding: 15px;
@@ -10,3 +17,16 @@ position: absolute;
 top: 20%; 
 }
 
+.text {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.button {
+    background-color: #d49000;
+    padding: 10px 20px;
+    color:white;
+    border-radius: 5px;
+    font-weight: bold;
+    border: black 2px solid;
+}

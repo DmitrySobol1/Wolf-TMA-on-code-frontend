@@ -201,9 +201,8 @@ const Game = () => {
 
   return (
     <>
-      {/* {isShowBottomModal && <BottomModal props='game' /> } */}
-      {/* <BottomModal props='game' />  */}
-
+      
+      
       {isFirstEnter ? (
         <FirstEnter setFirstEnter={setFirstEnter} />
       ) : (
