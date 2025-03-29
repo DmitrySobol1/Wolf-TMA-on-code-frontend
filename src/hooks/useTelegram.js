@@ -24,7 +24,7 @@ export const useTelegram = () => {
   return {
     webApp: window.Telegram?.WebApp || null,
     user: window.Telegram?.WebApp?.initDataUnsafe?.user,
-    // tlgid: window.Telegram?.WebApp?.initDataUnsafe?.user.id,
+    tlgid: window.Telegram?.WebApp?.initDataUnsafe?.user.id,
     vibrate
   };
 };
