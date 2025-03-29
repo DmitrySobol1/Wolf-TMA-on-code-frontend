@@ -8,8 +8,8 @@
 
 
 .popup {
-  background-color: #ffc843;
-  width: 70%;
+  background-color: #d49000;;
+  width: 85%;
   border-radius: 10px;
   padding: 35px;
   color: #161616;
@@ -18,7 +18,7 @@
   text-align: center;
   position: absolute;
   top: 20%;
-  
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 .btnWrapper {
@@ -35,9 +35,9 @@
 }
 
 .button {
-  background-color: #d49000;
+  background-color: #ffc843;
   padding: 10px 20px;
-  color: white;
+  color: black;
   border-radius: 5px;
   font-weight: bold;
   border: black 2px solid;
@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .flag {
