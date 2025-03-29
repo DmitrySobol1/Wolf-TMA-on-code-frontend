@@ -6,6 +6,7 @@ import { LanguageContext } from '../../App';
 import { VisibleLanguageModalContext } from '../../App';
 import axios from '../../axios';
 import { TEXTS } from './texts';
+import { useTelegram } from '../../hooks/useTelegram';
 
 import ru from '../../img/ru.png';
 import en from '../../img/en.png';
