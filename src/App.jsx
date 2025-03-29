@@ -26,10 +26,21 @@ export const TextForBottomModalContext = createContext();
 
 const App = () => {
   
-const [language, setLanguage] = useState('ru');
+const [language, setLanguage] = useState('');
 const [userLevel,setUserLevel] = useState('')
 const [isShowBottomModal,setShowBottomModal] = useState(false)
 const [bottomModalText,setBottomModalText] = useState('')
+
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const lang = urlParams.get('lang') || 'ru'
+  
+  useEffect(() => {
+      
+      setLanguage(lang);
+      console.log('lang из app=', lang)
+    }, []);
+
 
 return (
    

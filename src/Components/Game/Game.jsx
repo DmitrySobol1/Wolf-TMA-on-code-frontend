@@ -18,7 +18,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTelegram } from '../../hooks/useTelegram';
 
 // const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-const tlgid = 777;
+// const tlgid = 777;
+// const {tlgid} = useTelegram();
 const level2 = 1400;
 const level3 = 1430;
 
@@ -37,13 +38,9 @@ const Game = () => {
 
   const [floatingNumbers, setFloatingNumbers] = useState([]);
   const { vibrate } = useTelegram();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const lang = urlParams.get('lang');
-  if (lang !== null) {
-    setLanguage(lang);
-  }
-  console.log('lang=', lang);
+  const {tlgid} = useTelegram();
+  
+    
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -52,17 +49,17 @@ const Game = () => {
 
   const texts = {
     ru: {
-      energy: 'энергия',
+      energy: 'энергия222',
       info_score_title: 'Кликайте на волка, зарабатывайте баллы',
       info_score_text: 'баллы можно обменять на реальные монеты',
     },
     en: {
-      energy: 'energy',
+      energy: 'energy222',
       info_score_title: 'Click on wolf and earn points',
       info_score_text: 'you can change point on real coins',
     },
     de: {
-      energy: 'energie',
+      energy: 'energie222',
       info_score_title: 'Klicken sie auf den wolf und sammeln sie punkte',
       info_score_text: 'Punkte können gegen echte münzen eingetauscht werden',
     },
@@ -79,7 +76,6 @@ const Game = () => {
       setScore(score + 1);
       setEnergy(energy - 1);
 
-      
       vibrate('light');
 
       const rect = e.currentTarget.getBoundingClientRect();
@@ -171,17 +167,20 @@ const Game = () => {
     axios
       .post('/api/enter', {
         tlgid: tlgid,
+        language: language,
       })
       .then((response) => {
         console.log('Ответ от сервера:', response.data.result);
         if (response.data.result === 'created') {
           setFirstEnter(true);
+          
         } else if (response.data.result === 'exist') {
           console.log('Ответ от сервера:', response.data);
 
           setScore(Number(response.data.score));
           setEnergy(Number(response.data.energy));
           setLanguage(response.data.language);
+          
           setUserLevel(response.data.userLevel);
           if (response.data.userLevel === 2) {
             setWolfPicture(wolf2);
@@ -201,9 +200,6 @@ const Game = () => {
 
   return (
     <>
-      
-      
-      
       {isFirstEnter ? (
         <FirstEnter setFirstEnter={setFirstEnter} />
       ) : (
@@ -211,18 +207,18 @@ const Game = () => {
           <div className={style.container}>
             <div className={style.scoreWrapper}>
               <div>
-                <img src={coin} className={style.coin} alt='coin' />
+                <img src={coin} className={style.coin} alt="coin" />
               </div>
               <div className={style.score}>{score}</div>
               <>
                 <button onClick={iBtnHandler}>
-                  <img src={i} className={style.i} alt='info' />
+                  <img src={i} className={style.i} alt="info" />
                 </button>
               </>
             </div>
 
             <div className={style.energyWrapper}>
-              <img src={battery} className={style.battery} alt='battery' />
+              <img src={battery} className={style.battery} alt="battery" />
               <div className={style.energyText}>
                 {energyMap[language]}: {energy}/1000
               </div>
@@ -272,7 +268,7 @@ const Game = () => {
               // whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
               whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
             >
-              <img src={wolfPicture} alt='wolf'/>
+              <img src={wolfPicture} alt="wolf" />
             </motion.button>
           </div>
         </>
