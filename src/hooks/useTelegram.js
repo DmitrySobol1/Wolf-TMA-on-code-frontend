@@ -9,6 +9,10 @@ export const useTelegram = () => {
 //     }
 //   }, []);
 
+
+// window.Telegram.WebApp.enableClosingConfirmation()
+
+
   // Функция для вибрации
   const vibrate = (type = 'light') => {
     const allowedTypes = ['light', 'medium', 'heavy', 'rigid', 'soft'];

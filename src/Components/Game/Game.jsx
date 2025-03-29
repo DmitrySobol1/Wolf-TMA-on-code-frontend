@@ -17,9 +17,8 @@ import { TextForBottomModalContext } from '../../App';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTelegram } from '../../hooks/useTelegram';
 
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id;
-// const tlgid = 777;
-// const {tlgid} = useTelegram();
+
+
 const level2 = 1400;
 const level3 = 1430;
 
@@ -38,9 +37,9 @@ const Game = () => {
 
   const [floatingNumbers, setFloatingNumbers] = useState([]);
   const { vibrate } = useTelegram();
+
+  // const tlgid = 777;
   const {tlgid} = useTelegram();
-  
-    
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -49,17 +48,17 @@ const Game = () => {
 
   const texts = {
     ru: {
-      energy: 'энергия222',
+      energy: 'энергия7',
       info_score_title: 'Кликайте на волка, зарабатывайте баллы',
       info_score_text: 'баллы можно обменять на реальные монеты',
     },
     en: {
-      energy: 'energy222',
+      energy: 'energy7',
       info_score_title: 'Click on wolf and earn points',
       info_score_text: 'you can change point on real coins',
     },
     de: {
-      energy: 'energie222',
+      energy: 'energie7',
       info_score_title: 'Klicken sie auf den wolf und sammeln sie punkte',
       info_score_text: 'Punkte können gegen echte münzen eingetauscht werden',
     },
@@ -173,14 +172,13 @@ const Game = () => {
         console.log('Ответ от сервера:', response.data.result);
         if (response.data.result === 'created') {
           setFirstEnter(true);
-          
         } else if (response.data.result === 'exist') {
           console.log('Ответ от сервера:', response.data);
 
           setScore(Number(response.data.score));
           setEnergy(Number(response.data.energy));
           setLanguage(response.data.language);
-          
+
           setUserLevel(response.data.userLevel);
           if (response.data.userLevel === 2) {
             setWolfPicture(wolf2);

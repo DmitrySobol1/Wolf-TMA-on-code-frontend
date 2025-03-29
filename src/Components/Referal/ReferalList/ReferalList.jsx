@@ -3,17 +3,16 @@ import axios from '../../../axios';
 import { useState, useEffect, useContext } from 'react';
 import style from './ReferalLisr.module.css';
 import { LanguageContext } from '../../../App';
-
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// window.Telegram.WebApp.enableClosingConfirmation()
-const tlgid = 666;
-
+import { useTelegram } from '../../../hooks/useTelegram';
 
 
 
 const ReferalList = () => {
   const [referals, setReferals] = useState([]); // Храним данные в состоянии
   const { language, setLanguage } = useContext(LanguageContext);
+
+  // const tlgid = 777;
+    const {tlgid} = useTelegram();
 
   const list = {
     ru: <>Список друзей:</>,

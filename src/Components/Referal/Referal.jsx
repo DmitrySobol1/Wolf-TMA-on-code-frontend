@@ -9,11 +9,9 @@ import i from '../../img/i.png';
 import imgPresent from '../../img/present.png';
 import addFriend from '../../img/addfriend.png';
 import { TEXTS } from './texts';
-import ReferalList from './ReferalList/ReferalList'
+import ReferalList from './ReferalList/ReferalList';
+import { useTelegram } from '../../hooks/useTelegram';
 
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// window.Telegram.WebApp.enableClosingConfirmation()
-const tlgid=777
 
 
 const Referal = () => {
@@ -24,6 +22,9 @@ const Referal = () => {
 
   const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText, tlgMessage, languageInteger } =
     TEXTS[language];
+
+   // const tlgid = 777;
+    const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);

@@ -7,8 +7,9 @@ import { userLevelContext } from '../../App';
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 import axios from '../../axios';
-import wolficon from '../../img/wolfIcon.png'
-import i from '../../img/i.png'
+import wolficon from '../../img/wolfIcon.png';
+import i from '../../img/i.png';
+import { useTelegram } from '../../hooks/useTelegram';
 
 
 
@@ -17,6 +18,9 @@ const Level = () => {
   const { userLevel, setUserLevel } = useContext(userLevelContext);
   const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
+
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
  
 
   const handleLanguageChange = (event) => {
@@ -24,7 +28,7 @@ const Level = () => {
 
     axios
       .post('/api/setlanguage', {
-        tlgid: 777,
+        tlgid: tlgid,
         language: event.target.value,
       })
       .then((response) => {

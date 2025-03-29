@@ -10,11 +10,11 @@ import i from '../../img/i.png';
 import iconsexchange from '../../img/iconsexchange.png';
 import imgFriend from '../../img/friend.png';
 
+import { useTelegram } from '../../hooks/useTelegram';
+
 import { TEXTS } from './texts';
 
-// const tlgid = window.Telegram.WebApp.initDataUnsafe.user.id
-// window.Telegram.WebApp.enableClosingConfirmation()
-const tlgid = 777;
+
 
 const Exchange = () => {
   const { isShowBottomModal, setShowBottomModal } =
@@ -24,6 +24,9 @@ const Exchange = () => {
 
   const { title, subtitle, greyTitle, greyRow, redTitle, redRow } =
     TEXTS[language];
+
+   // const tlgid = 777;
+    const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
