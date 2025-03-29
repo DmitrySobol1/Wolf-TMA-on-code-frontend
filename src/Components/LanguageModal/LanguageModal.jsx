@@ -12,8 +12,10 @@ import en from '../../img/en.png';
 import de from '../../img/de.png';
 
 const LanguageModal = () => {
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
 
   const navigate = useNavigate(); // Хук для навигации
   const { language, setLanguage } = useContext(LanguageContext);

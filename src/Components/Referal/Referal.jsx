@@ -15,6 +15,12 @@ import { useTelegram } from '../../hooks/useTelegram';
 
 
 const Referal = () => {
+
+  
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();  
+
   const { isShowBottomModal, setShowBottomModal } =
     useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
@@ -23,8 +29,7 @@ const Referal = () => {
   const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText, tlgMessage, languageInteger } =
     TEXTS[language];
 
-   const tlgid = 777;
-    // const {tlgid} = useTelegram();  
+   
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);

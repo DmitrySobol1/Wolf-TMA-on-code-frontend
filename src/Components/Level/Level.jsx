@@ -18,6 +18,11 @@ import de from '../../img/de.png';
 
 
 const Level = () => {
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
+
   const { language, setLanguage } = useContext(LanguageContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);
   const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
@@ -26,8 +31,7 @@ const Level = () => {
 
   const [flagPic, setFlagPic] = useState(ru); 
 
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+
  
  
 

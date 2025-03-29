@@ -23,6 +23,11 @@ const level2 = 1400;
 const level3 = 1430;
 
 const Game = () => {
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
+
   const [isFirstEnter, setFirstEnter] = useState(false);
   const [score, setScore] = useState('');
   const [energy, setEnergy] = useState('');
@@ -38,8 +43,7 @@ const Game = () => {
   const [floatingNumbers, setFloatingNumbers] = useState([]);
   const { vibrate } = useTelegram();
 
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
