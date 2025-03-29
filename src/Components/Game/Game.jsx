@@ -38,8 +38,8 @@ const Game = () => {
   const [floatingNumbers, setFloatingNumbers] = useState([]);
   const { vibrate } = useTelegram();
 
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -48,17 +48,17 @@ const Game = () => {
 
   const texts = {
     ru: {
-      energy: 'энергия7',
+      energy: 'энергия',
       info_score_title: 'Кликайте на волка, зарабатывайте баллы',
       info_score_text: 'баллы можно обменять на реальные монеты',
     },
     en: {
-      energy: 'energy7',
+      energy: 'energy',
       info_score_title: 'Click on wolf and earn points',
       info_score_text: 'you can change point on real coins',
     },
     de: {
-      energy: 'energie7',
+      energy: 'energie',
       info_score_title: 'Klicken sie auf den wolf und sammeln sie punkte',
       info_score_text: 'Punkte können gegen echte münzen eingetauscht werden',
     },

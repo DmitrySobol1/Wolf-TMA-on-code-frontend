@@ -23,8 +23,8 @@ const Referal = () => {
   const { title, subtitle, greyTitle, greyRow1, greyRow2, btnText, tlgMessage, languageInteger } =
     TEXTS[language];
 
-   // const tlgid = 777;
-    const {tlgid} = useTelegram();  
+   const tlgid = 777;
+    // const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);

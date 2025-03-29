@@ -25,8 +25,8 @@ const Exchange = () => {
   const { title, subtitle, greyTitle, greyRow, redTitle, redRow } =
     TEXTS[language];
 
-   // const tlgid = 777;
-    const {tlgid} = useTelegram();  
+   const tlgid = 777;
+    // const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);

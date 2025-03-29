@@ -11,8 +11,8 @@ const ReferalList = () => {
   const [referals, setReferals] = useState([]); // Храним данные в состоянии
   const { language, setLanguage } = useContext(LanguageContext);
 
-  // const tlgid = 777;
-    const {tlgid} = useTelegram();
+  const tlgid = 777;
+    // const {tlgid} = useTelegram();
 
   const list = {
     ru: <>Список друзей:</>,

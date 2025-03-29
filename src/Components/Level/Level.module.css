@@ -33,3 +33,15 @@ font-weight: bold;
     background-color: white;
     border-radius: 50%;
 }
+
+.flag {
+    width: 20px;
+    height: 20px;
+}
+
+.flagBtn {
+    color:white;
+    font-weight: 400;
+    display:flex;
+    gap:3px;
+}

@@ -16,6 +16,7 @@ import Layout from './Components/Layout/Layout'
 import Yellowbg from './Components/Yellowbg/Yellowbg'
 import Level from './Components/Level/Level'
 import BottomModal from './Components/BottomModal/BottomModal'
+import LanguageModal from './Components/LanguageModal/LanguageModal';
 
 
 
@@ -23,6 +24,11 @@ export const LanguageContext = createContext();
 export const userLevelContext = createContext();
 export const BottomModalContext = createContext();
 export const TextForBottomModalContext = createContext();
+export const VisibleLanguageModalContext = createContext();
+
+    
+   // const { isVisibleLanguageModal, setVisibleLanguageModal } = useContext(VisibleLanguageModalContext);  
+
 
 const App = () => {
   
@@ -30,6 +36,7 @@ const [language, setLanguage] = useState('');
 const [userLevel,setUserLevel] = useState('')
 const [isShowBottomModal,setShowBottomModal] = useState(false)
 const [bottomModalText,setBottomModalText] = useState('')
+const [isVisibleLanguageModal,setVisibleLanguageModal] = useState('false')
 
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -46,17 +53,20 @@ return (
    
         <>
         <LanguageContext.Provider value = {{language, setLanguage}}>
+        <VisibleLanguageModalContext.Provider value = {{isVisibleLanguageModal,setVisibleLanguageModal}}>
         <userLevelContext.Provider value = {{userLevel,setUserLevel}}>
         <BottomModalContext.Provider value = {{isShowBottomModal,setShowBottomModal}}>
         <TextForBottomModalContext.Provider value = {{setBottomModalText}}>
               <Level/>
               <Yellowbg />
               <Layout />
+              {!isVisibleLanguageModal && <LanguageModal /> }
               {isShowBottomModal && <BottomModal props={bottomModalText} /> }
               <Navigations />
         </TextForBottomModalContext.Provider>
         </BottomModalContext.Provider>
         </userLevelContext.Provider>
+        </VisibleLanguageModalContext.Provider>  
         </LanguageContext.Provider>        
         </>
    

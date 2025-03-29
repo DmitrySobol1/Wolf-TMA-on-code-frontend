@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import style from './Level.module.css';
 import BottomModal from '../BottomModal/BottomModal'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { LanguageContext } from '../../App';
 import { userLevelContext } from '../../App';
 import { BottomModalContext } from '../../App';
@@ -9,7 +9,11 @@ import { TextForBottomModalContext } from '../../App';
 import axios from '../../axios';
 import wolficon from '../../img/wolfIcon.png';
 import i from '../../img/i.png';
+import { VisibleLanguageModalContext } from '../../App';
 import { useTelegram } from '../../hooks/useTelegram';
+import ru from '../../img/ru.png';
+import en from '../../img/en.png';
+import de from '../../img/de.png';
 
 
 
@@ -18,26 +22,33 @@ const Level = () => {
   const { userLevel, setUserLevel } = useContext(userLevelContext);
   const { isShowBottomModal, setShowBottomModal } = useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
+  const { isVisibleLanguageModal, setVisibleLanguageModal } = useContext(VisibleLanguageModalContext);
 
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  const [flagPic, setFlagPic] = useState(ru); 
+
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
+ 
  
 
-  const handleLanguageChange = (event) => {
-    setLanguage(event.target.value);
-
-    axios
-      .post('/api/setlanguage', {
-        tlgid: tlgid,
-        language: event.target.value,
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error('Ошибка:', error);
-      });
+    
+  const handleLanguageChange = () => {
+    setVisibleLanguageModal(!isVisibleLanguageModal);
+   
   };
+
+
+  useEffect(() => {
+    let newFlag;
+    if (language === 'ru') {
+      newFlag = ru;
+    } else if (language === 'en') {
+      newFlag = en;
+    } else {
+      newFlag = de;
+    }
+    setFlagPic(newFlag);
+  }, [language]);
 
 
   const iBtnHandler = ()=> {
@@ -79,8 +90,11 @@ const Level = () => {
           </div>
 
            <div className={style.right}>
+            {/* <button onClick = {handleLanguageChange}>{language}</button> */}
+            <button onClick = {handleLanguageChange} className={style.flagBtn}><img src={flagPic} className={style.flag}/><span>{language}</span><span>&#9660;</span></button>
+
             {/* <label htmlFor="dropdown">Выберите язык:</label> */}
-            <select
+            {/* <select
               id="dropdown"
               value={language}
               onChange={handleLanguageChange}
@@ -88,7 +102,7 @@ const Level = () => {
               <option value="ru">русский</option>
               <option value="en">english</option>
               <option value="de">deutch</option>
-            </select>
+            </select> */}
           </div>
           </div> 
           <div>
