@@ -108,15 +108,25 @@ const ExchangeLevel2 = () => {
   }
   
   function handleFocusOut(e){
-    if (e.relatedTarget.localName == 'button'){
+    if (e.relatedTarget && e.relatedTarget.localName == 'button' ){
       btnNextHandler()
+      setShowNavigateButton(true)
+    } else {
+      
+      setShowNavigateButton(true)
+    }
+    
+  }
+  
+  function handleFocusOut2(e){
+    if (e.relatedTarget && e.relatedTarget.localName == 'button' ){
+      btnNextHandler2()
       setShowNavigateButton(true)
     } else {
       setShowNavigateButton(true)
     }
     
   }
-
 
   return (
     <>
@@ -157,7 +167,7 @@ const ExchangeLevel2 = () => {
               value={inputText2}
               placeholder={`${inputPlaceholder2}`}
               onFocus={handleFocusOn} 
-              onBlur={handleFocusOut} 
+              onBlur={handleFocusOut2} 
             />
           </div>
           <button className={style.btnAddFriend} onClick={btnNextHandler2}>
