@@ -107,9 +107,14 @@ const ExchangeLevel2 = () => {
     setShowNavigateButton(false)
   }
   
-  function handleFocusOut(){
-    console.log('out focused')
-    setShowNavigateButton(true)
+  function handleFocusOut(e){
+    if (e.relatedTarget.localName == 'button'){
+      btnNextHandler()
+      setShowNavigateButton(true)
+    } else {
+      setShowNavigateButton(true)
+    }
+    
   }
 
 
@@ -136,7 +141,7 @@ const ExchangeLevel2 = () => {
               onBlur={handleFocusOut} 
             />
           </div>
-          <button className={style.btnAddFriend} onClick={btnNextHandler}>
+          <button className={style.btnAddFriend} onClick={btnNextHandler} id='btnNext'>
             <span>{btnNextText}</span>
           </button>
           {isShowEmptyInputAlert ? <div className = {style.emptyInputAlert}>{alertText}</div>:''}
@@ -151,13 +156,15 @@ const ExchangeLevel2 = () => {
               onChange={inputHandler2}
               value={inputText2}
               placeholder={`${inputPlaceholder2}`}
+              onFocus={handleFocusOn} 
+              onBlur={handleFocusOut} 
             />
           </div>
           <button className={style.btnAddFriend} onClick={btnNextHandler2}>
             <span>{btnNextText}</span>
           </button>
           {isShowEmptyInputAlert ? <div className = {style.emptyInputAlert}>{alertText}</div>:''}
-          {/* {isShowWrongSumAlert ? <div className = {style.emptyInputAlert}>{wrongSumAlert}</div>:''} */}
+          
         </>
         : <div>{textRqstSentToAdmin}</div>
         
