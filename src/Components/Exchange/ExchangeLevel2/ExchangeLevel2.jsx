@@ -111,6 +111,7 @@ const ExchangeLevel2 = () => {
             <img src={echange} className={style.iconBtnAddFriend} />
             <span>{btnText}</span>
           </button>
+          <p>some</p>
         </div>
        : changeStep === 2 ?
         <>
