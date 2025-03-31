@@ -26,6 +26,7 @@ export const BottomModalContext = createContext();
 export const TextForBottomModalContext = createContext();
 export const VisibleLanguageModalContext = createContext();
 export const ScoreContext = createContext();
+export const NavigationButtonContext = createContext();
 
    
 
@@ -37,6 +38,7 @@ const [isShowBottomModal,setShowBottomModal] = useState(false)
 const [bottomModalText,setBottomModalText] = useState('')
 const [isVisibleLanguageModal,setVisibleLanguageModal] = useState('false')
 const [score, setScore] = useState('');
+const [ isShowNavigateButton, setShowNavigateButton ] = useState(true);
 
   const urlParams = new URLSearchParams(window.location.search);
   const lang = urlParams.get('lang') || 'ru'
@@ -53,6 +55,7 @@ return (
         <>
         <LanguageContext.Provider value = {{language, setLanguage}}>
         <VisibleLanguageModalContext.Provider value = {{isVisibleLanguageModal,setVisibleLanguageModal}}>
+        <NavigationButtonContext.Provider value = {{isShowNavigateButton, setShowNavigateButton}}>
         <userLevelContext.Provider value = {{userLevel,setUserLevel}}>
         <BottomModalContext.Provider value = {{isShowBottomModal,setShowBottomModal}}>
         <TextForBottomModalContext.Provider value = {{setBottomModalText}}>
@@ -67,6 +70,7 @@ return (
         </TextForBottomModalContext.Provider>
         </BottomModalContext.Provider>
         </userLevelContext.Provider>
+        </NavigationButtonContext.Provider>
         </VisibleLanguageModalContext.Provider>  
         </LanguageContext.Provider>        
         </>

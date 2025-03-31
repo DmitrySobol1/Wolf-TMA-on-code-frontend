@@ -10,6 +10,7 @@ import { useTelegram } from '../../../hooks/useTelegram';
 
 import { LanguageContext } from '../../../App';
 import { ScoreContext } from '../../../App';
+import { NavigationButtonContext } from '../../../App';
 
 const ExchangeLevel2 = () => {
 
@@ -20,6 +21,7 @@ const ExchangeLevel2 = () => {
 
   const { language, setLanguage } = useContext(LanguageContext);
   const { score, setScore } = useContext(ScoreContext);
+  const { isShowNavigateButton, setShowNavigateButton } = useContext(NavigationButtonContext);
 
   const { btnText, labelWallet, btnNextText, inputPlaceholder, emptyInputAlert,labelSum, inputPlaceholder2, emptyInputAlert2, wrongSumAlert, notEnoughPointAlert,  textRqstSentToAdmin } =
     TEXTS[language];
@@ -100,7 +102,15 @@ const ExchangeLevel2 = () => {
     
   }
 
-
+  function handleFocusOn(){
+    console.log('on focused')
+    setShowNavigateButton(false)
+  }
+  
+  function handleFocusOut(){
+    console.log('out focused')
+    setShowNavigateButton(true)
+  }
 
 
   return (
@@ -111,7 +121,7 @@ const ExchangeLevel2 = () => {
             <img src={echange} className={style.iconBtnAddFriend} />
             <span>{btnText}</span>
           </button>
-          <p>some 1</p>
+          
         </div>
        : changeStep === 2 ?
         <>
@@ -122,13 +132,15 @@ const ExchangeLevel2 = () => {
               onChange={inputHandler}
               value={inputText}
               placeholder={`${inputPlaceholder} UQAw8-OzyiZWzkScZsHoFfjuzJD5xsSToteeqR3YPOU8f5uA`}
+              onFocus={handleFocusOn} 
+              onBlur={handleFocusOut} 
             />
           </div>
           <button className={style.btnAddFriend} onClick={btnNextHandler}>
             <span>{btnNextText}</span>
           </button>
           {isShowEmptyInputAlert ? <div className = {style.emptyInputAlert}>{alertText}</div>:''}
-          <p>some 2</p>
+          
         </>
         : changeStep === 3 ?
         <>
