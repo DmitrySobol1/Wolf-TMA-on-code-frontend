@@ -111,7 +111,7 @@ const ExchangeLevel2 = () => {
             <img src={echange} className={style.iconBtnAddFriend} />
             <span>{btnText}</span>
           </button>
-          <p>some</p>
+          <p>some 1</p>
         </div>
        : changeStep === 2 ?
         <>
@@ -128,6 +128,7 @@ const ExchangeLevel2 = () => {
             <span>{btnNextText}</span>
           </button>
           {isShowEmptyInputAlert ? <div className = {style.emptyInputAlert}>{alertText}</div>:''}
+          <p>some 2</p>
         </>
         : changeStep === 3 ?
         <>
