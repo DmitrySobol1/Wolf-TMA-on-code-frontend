@@ -48,6 +48,20 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+.buttonEn{
+  background-color: #ffc843;
+  padding: 10px 20px 10px 10px;
+  color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  border: black 2px solid;
+  gap:10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}
+
 .flag {
   width: 25px;
   height: 25px;
@@ -62,3 +76,9 @@
   color: black;
   
 }
+
+.divFlag {
+  background-color: black;
+  border-radius: 50%;
+}
+

@@ -4,6 +4,10 @@ import { useState, useEffect, useContext } from 'react';
 import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 import { LanguageContext } from '../../App';
+import { userLevelContext } from '../../App';
+
+import ExchangeLevel2 from './ExchangeLevel2/ExchangeLevel2'
+
 
 import style from './Exchange.module.css';
 import i from '../../img/i.png';
@@ -21,13 +25,14 @@ const Exchange = () => {
     useContext(BottomModalContext);
   const { setBottomModalText } = useContext(TextForBottomModalContext);
   const { language, setLanguage } = useContext(LanguageContext);
+  const { userLevel, setUserLevel } = useContext(userLevelContext);
 
   const { title, subtitle, greyTitle, greyRow, redTitle, redRow } =
     TEXTS[language];
 
-    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    //  const tlgid = 777;
-    const {tlgid} = useTelegram();  
+    // FIXME: поменять в проде + hooks>useTelegram 
+     const tlgid = 777;
+    // const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -47,6 +52,8 @@ const Exchange = () => {
 
           <div className={style.subtitleText}>{subtitle}</div>
 
+         
+
           <div className={style.greyWrapper}>
             <div className={style.imgDiv}>
               <img src={iconsexchange} className={style.imgPresent} />
@@ -57,6 +64,7 @@ const Exchange = () => {
             </div>
           </div>
 
+          {userLevel ===  1 ?
           <div className={style.redWrapper}>
             <div className={style.imgDiv}>
               <img src={imgFriend} className={style.imgPresent} />
@@ -66,6 +74,12 @@ const Exchange = () => {
               <div>{redRow}</div>
             </div> 
           </div>
+          :
+          userLevel ===  2 ? <> <ExchangeLevel2 /></>
+          :
+          userLevel ===  3 ? <div>если 3ий уровень</div>: ''
+          }
+
         </div>
       </div>
     </>

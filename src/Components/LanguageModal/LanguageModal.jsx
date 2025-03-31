@@ -14,9 +14,9 @@ import de from '../../img/de.png';
 
 const LanguageModal = () => {
   
-  // !!!!!!!!!!!!!!!!!!!!!!!!!
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  // FIXME: поменять в проде + hooks>useTelegram 
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
 
   const navigate = useNavigate(); // Хук для навигации
   const { language, setLanguage } = useContext(LanguageContext);
@@ -69,25 +69,29 @@ const LanguageModal = () => {
             data-lang="ru"
             className={style.button}
           >
-            <img src={ru} className={style.flag} />
+            <div className = {style.divFlag}><img src={ru} className={style.flag} /></div>
             русский
           </button>
+          
           <button
             onClick={clickHandler}
             data-lang="en"
-            className={style.button}
+            className={style.buttonEn}
           >
-            <img src={en} className={style.flag} />
+            <div className = {style.divFlag}><img src={en} className={style.flag} /></div>
             english
           </button>
-          <button
-            onClick={clickHandler}
-            data-lang="de"
-            className={style.button}
-          >
-            <img src={de} className={style.flag} />
-            deutsch
-          </button>
+          
+          
+              <button
+              onClick={clickHandler}
+              data-lang="de"
+              className={style.button}
+            >
+              <div className = {style.divFlag}><img src={de} className={style.flag} /></div>
+              deutsch
+            </button>
+          
         </div>
       </div>
     </div>

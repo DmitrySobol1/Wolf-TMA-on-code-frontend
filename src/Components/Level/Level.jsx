@@ -19,9 +19,9 @@ import de from '../../img/de.png';
 
 const Level = () => {
 
-  // !!!!!!!!!!!!!!!!!!!!!!!!!
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  // FIXME: поменять в проде + hooks>useTelegram 
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
 
   const { language, setLanguage } = useContext(LanguageContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);

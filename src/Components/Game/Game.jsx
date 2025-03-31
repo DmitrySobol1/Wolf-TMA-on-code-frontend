@@ -3,6 +3,7 @@ import axios from '../../axios';
 import { useState, useEffect, useContext } from 'react';
 import FirstEnter from '../FirstEnter/FirstEnter';
 import { LanguageContext } from '../../App';
+import { ScoreContext } from '../../App';
 import { userLevelContext } from '../../App';
 import style from './Game.module.css';
 import i from '../../img/i.png';
@@ -24,17 +25,18 @@ const level3 = 1430;
 
 const Game = () => {
 
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  // FIXME: поменять в проде + hooks>useTelegram 
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
 
   const [isFirstEnter, setFirstEnter] = useState(false);
-  const [score, setScore] = useState('');
+  // const [score, setScore] = useState('');
   const [energy, setEnergy] = useState('');
   const [wolfPicture, setWolfPicture] = useState(wolf1);
   const [isWolfButtonActive, setWolfButtonActive] = useState(true);
 
   const { language, setLanguage } = useContext(LanguageContext);
+  const { score, setScore } = useContext(ScoreContext);
   const { userLevel, setUserLevel } = useContext(userLevelContext);
   const { isShowBottomModal, setShowBottomModal } =
     useContext(BottomModalContext);
@@ -106,42 +108,42 @@ const Game = () => {
   };
 
   // для смены картинки
-  useEffect(() => {
-    if (score === level2) {
-      setUserLevel(2);
-      setWolfPicture(wolf2);
-      setShowBottomModal(!isShowBottomModal);
-      setBottomModalText('newLevelAchived');
+  // useEffect(() => {
+  //   if (score === level2) {
+  //     setUserLevel(2);
+  //     setWolfPicture(wolf2);
+  //     setShowBottomModal(!isShowBottomModal);
+  //     setBottomModalText('newLevelAchived');
 
-      axios
-        .post('/api/setuserLevel', {
-          tlgid: tlgid,
-          userLevel: 2,
-        })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error('Ошибка:', error);
-        });
-    } else if (score === level3) {
-      setUserLevel(3);
-      setWolfPicture(wolf3);
-      setShowBottomModal(!isShowBottomModal);
-      setBottomModalText('newLevelAchived');
-      axios
-        .post('/api/setuserLevel', {
-          tlgid: tlgid,
-          userLevel: 3,
-        })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error('Ошибка:', error);
-        });
-    }
-  }, [score]);
+  //     axios
+  //       .post('/api/setuserLevel', {
+  //         tlgid: tlgid,
+  //         userLevel: 2,
+  //       })
+  //       .then((response) => {
+  //         console.log(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Ошибка:', error);
+  //       });
+  //   } else if (score === level3) {
+  //     setUserLevel(3);
+  //     setWolfPicture(wolf3);
+  //     setShowBottomModal(!isShowBottomModal);
+  //     setBottomModalText('newLevelAchived');
+  //     axios
+  //       .post('/api/setuserLevel', {
+  //         tlgid: tlgid,
+  //         userLevel: 3,
+  //       })
+  //       .then((response) => {
+  //         console.log(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Ошибка:', error);
+  //       });
+  //   }
+  // }, [score]);
 
   // для отслеживания энергии
   useEffect(() => {

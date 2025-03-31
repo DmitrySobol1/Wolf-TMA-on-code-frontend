@@ -3,7 +3,7 @@ export const TEXTS = {
     text: 'У вас пока нет приглашенных друзей',
   },
   en: {
-    text: 'You still have no invited friend',
+    text: 'You still have no invited friends',
   },
   de: {
     text: 'Sie haben noch keinen eingeladenen Freund',

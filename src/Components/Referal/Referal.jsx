@@ -17,9 +17,9 @@ import { useTelegram } from '../../hooks/useTelegram';
 const Referal = () => {
 
   
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();  
+  // FIXME: поменять в проде + hooks>useTelegram 
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();  
 
   const { isShowBottomModal, setShowBottomModal } =
     useContext(BottomModalContext);

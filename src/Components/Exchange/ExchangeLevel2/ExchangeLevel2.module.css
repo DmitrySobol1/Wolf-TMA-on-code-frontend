@@ -1,0 +1,53 @@
+.btnAddFriend {
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background-color: #ffc843; 
+    border: 2px solid #FFF; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold;
+    color: #1f1f1f; 
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.iconBtnAddFriend {
+    width: 25px;
+    height: 25px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+}
+
+.inputWallet {
+    border-radius: 5px;
+    border-color: #FFF;
+    background-color: white;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    color: black;
+    font-weight: 300;
+}
+.label {
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.inputPlaceholder {
+    font-weight: 300;
+}
+
+.emptyInputAlert {
+    background-color: salmon;
+    font-weight: 300;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+}
