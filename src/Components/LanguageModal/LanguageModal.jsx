@@ -15,8 +15,8 @@ import de from '../../img/de.png';
 const LanguageModal = () => {
   
   // FIXME: поменять в проде + hooks>useTelegram 
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
 
   const navigate = useNavigate(); // Хук для навигации
   const { language, setLanguage } = useContext(LanguageContext);

@@ -31,8 +31,8 @@ const Exchange = () => {
     TEXTS[language];
 
     // FIXME: поменять в проде + hooks>useTelegram 
-     const tlgid = 777;
-    // const {tlgid} = useTelegram();  
+    //  const tlgid = 777;
+    const {tlgid} = useTelegram();  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);

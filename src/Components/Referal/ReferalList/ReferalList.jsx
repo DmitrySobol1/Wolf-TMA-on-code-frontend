@@ -10,8 +10,8 @@ import { TEXTS } from './texts';
 const ReferalList = () => {
 
   // FIXME: поменять в проде + hooks>useTelegram 
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
 
 
   const [referals, setReferals] = useState([]); 
