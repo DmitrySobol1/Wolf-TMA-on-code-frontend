@@ -24,8 +24,8 @@ const level3 = 1430;
 
 const Game = () => {
   // FIXME: поменять в проде + hooks>useTelegram
-  const tlgid = 777;
-  // const {tlgid} = useTelegram();
+  // const tlgid = 777;
+  const {tlgid} = useTelegram();
 
   const [isFirstEnter, setFirstEnter] = useState(false);
   const [energy, setEnergy] = useState('');
