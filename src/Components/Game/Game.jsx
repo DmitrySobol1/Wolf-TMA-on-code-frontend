@@ -17,23 +17,21 @@ import { BottomModalContext } from '../../App';
 import { TextForBottomModalContext } from '../../App';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTelegram } from '../../hooks/useTelegram';
-
-
+import Loader from '../Loader/Loader';
 
 const level2 = 1400;
 const level3 = 1430;
 
 const Game = () => {
-
-  // FIXME: поменять в проде + hooks>useTelegram 
-  // const tlgid = 777;
-  const {tlgid} = useTelegram();
+  // FIXME: поменять в проде + hooks>useTelegram
+  const tlgid = 777;
+  // const {tlgid} = useTelegram();
 
   const [isFirstEnter, setFirstEnter] = useState(false);
-  // const [score, setScore] = useState('');
   const [energy, setEnergy] = useState('');
   const [wolfPicture, setWolfPicture] = useState(wolf1);
-  const [isWolfButtonActive, setWolfButtonActive] = useState(true);
+  const [isWolfButtonActive, setWolfButtonActive] = useState(false);
+  const [showLoader, setShowLoader] = useState(true);
 
   const { language, setLanguage } = useContext(LanguageContext);
   const { score, setScore } = useContext(ScoreContext);
@@ -44,8 +42,6 @@ const Game = () => {
 
   const [floatingNumbers, setFloatingNumbers] = useState([]);
   const { vibrate } = useTelegram();
-
-  
 
   function iBtnHandler() {
     setShowBottomModal(!isShowBottomModal);
@@ -107,65 +103,7 @@ const Game = () => {
     }
   };
 
-  // для смены картинки
-  // useEffect(() => {
-  //   if (score === level2) {
-  //     setUserLevel(2);
-  //     setWolfPicture(wolf2);
-  //     setShowBottomModal(!isShowBottomModal);
-  //     setBottomModalText('newLevelAchived');
-
-  //     axios
-  //       .post('/api/setuserLevel', {
-  //         tlgid: tlgid,
-  //         userLevel: 2,
-  //       })
-  //       .then((response) => {
-  //         console.log(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Ошибка:', error);
-  //       });
-  //   } else if (score === level3) {
-  //     setUserLevel(3);
-  //     setWolfPicture(wolf3);
-  //     setShowBottomModal(!isShowBottomModal);
-  //     setBottomModalText('newLevelAchived');
-  //     axios
-  //       .post('/api/setuserLevel', {
-  //         tlgid: tlgid,
-  //         userLevel: 3,
-  //       })
-  //       .then((response) => {
-  //         console.log(response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Ошибка:', error);
-  //       });
-  //   }
-  // }, [score]);
-
-  // для отслеживания энергии
-  useEffect(() => {
-    if (energy === 0) {
-      console.log('энергии 0');
-      setShowBottomModal(!isShowBottomModal);
-      setBottomModalText('emptyEnergy');
-      setWolfButtonActive(false);
-
-      // axios
-      //   .post('/api/setuserLevel', {
-      //     tlgid: 777,
-      //     userLevel: 2,
-      //   })
-      //   .then((response) => {
-      //     console.log(response.data);
-      //   })
-      //   .catch((error) => {
-      //     console.error('Ошибка:', error);
-      //   });
-    }
-  }, [energy]);
+ 
 
   // для рендера
   useEffect(() => {
@@ -195,86 +133,107 @@ const Game = () => {
       })
       .catch((error) => {
         console.error('Ошибка при выполнении запроса:', error);
+      })
+      .finally(() => {
+        setShowLoader(false);
+        setWolfButtonActive(true)
+        
       });
   }, [isFirstEnter]);
 
-  // const handleLanguageChange = (event) => {
-  //   setLanguage(event.target.value);
-  // };
+
+   // для отслеживания энергии
+   useEffect(() => {
+    if (energy === 0) {
+      console.log('энергии 0, en=', energy);
+      setShowBottomModal(true);
+      setBottomModalText('emptyEnergy');
+      setWolfButtonActive(false);
+    }
+  }, [energy]);
+
+
+  
 
   return (
     <>
-      {isFirstEnter ? (
-        <FirstEnter setFirstEnter={setFirstEnter} />
+      {showLoader ? (
+        <Loader />
       ) : (
         <>
-          <div className={style.container}>
-            <div className={style.scoreWrapper}>
-              <div>
-                <img src={coin} className={style.coin} alt="coin" />
-              </div>
-              <div className={style.score}>{score}</div>
-              <>
-                <button onClick={iBtnHandler}>
-                  <img src={i} className={style.i} alt="info" />
-                </button>
-              </>
-            </div>
+          {isFirstEnter ? (
+            <FirstEnter setFirstEnter={setFirstEnter} />
+          ) : (
+            <>
+              <div className={style.container}>
+                <div className={style.scoreWrapper}>
+                  <div>
+                    <img src={coin} className={style.coin} alt="coin" />
+                  </div>
+                  <div className={style.score}>{score}</div>
+                  <>
+                    <button onClick={iBtnHandler}>
+                      <img src={i} className={style.i} alt="info" />
+                    </button>
+                  </>
+                </div>
 
-            <div className={style.energyWrapper}>
-              <img src={battery} className={style.battery} alt="battery" />
-              <div className={style.energyText}>
-                {energyMap[language]}: {energy}/1000
-              </div>
-            </div>
+                <div className={style.energyWrapper}>
+                  <img src={battery} className={style.battery} alt="battery" />
+                  <div className={style.energyText}>
+                    {energyMap[language]}: {energy}/1000
+                  </div>
+                </div>
 
-            <AnimatePresence>
-              {floatingNumbers.map((num) => (
-                <motion.div
-                  key={num.id}
-                  initial={{
-                    opacity: 1,
-                    scale: 1,
-                    x: num.x,
-                    y: num.y,
-                    position: 'absolute',
-                    color: '#ffffff',
-                    fontSize: '24px',
-                    fontWeight: 'bold',
-                    pointerEvents: 'none',
-                    textShadow: '0 0 5px rgba(0,0,0,0.5)',
-                    zIndex: 100,
-                  }}
-                  animate={{
-                    y: num.y - 100,
-                    opacity: 0,
-                    scale: 1.5,
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease: 'easeOut',
-                  }}
-                  onAnimationComplete={() => {
-                    setFloatingNumbers((prev) =>
-                      prev.filter((n) => n.id !== num.id)
-                    );
-                  }}
+                <AnimatePresence>
+                  {floatingNumbers.map((num) => (
+                    <motion.div
+                      key={num.id}
+                      initial={{
+                        opacity: 1,
+                        scale: 1,
+                        x: num.x,
+                        y: num.y,
+                        position: 'absolute',
+                        color: '#ffffff',
+                        fontSize: '24px',
+                        fontWeight: 'bold',
+                        pointerEvents: 'none',
+                        textShadow: '0 0 5px rgba(0,0,0,0.5)',
+                        zIndex: 100,
+                      }}
+                      animate={{
+                        y: num.y - 100,
+                        opacity: 0,
+                        scale: 1.5,
+                      }}
+                      transition={{
+                        duration: 1,
+                        ease: 'easeOut',
+                      }}
+                      onAnimationComplete={() => {
+                        setFloatingNumbers((prev) =>
+                          prev.filter((n) => n.id !== num.id)
+                        );
+                      }}
+                    >
+                      {num.value}
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+
+                <motion.button
+                  onClick={clickHandler}
+                  className={style.wolf}
+                  initial={false}
+                  // whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
+                  whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
                 >
-                  {num.value}
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            <motion.button
-              onClick={clickHandler}
-              className={style.wolf}
-              initial={false}
-              // whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
-              whileTap={{ scale: 0.99, transition: { duration: 0.01 } }}
-            >
-              <img src={wolfPicture} alt="wolf" />
-            </motion.button>
-          </div>
+                  <img src={wolfPicture} alt="wolf" />
+                </motion.button>
+              </div>
+            </>
+          )}
         </>
       )}
     </>
