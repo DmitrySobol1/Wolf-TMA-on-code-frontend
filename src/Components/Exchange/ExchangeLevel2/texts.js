@@ -27,7 +27,7 @@ export const TEXTS = {
   },
   de: {
     btnText: 'Tausch',
-    labelWallet: 'Schreiben Sie die Adresse Ihrer Brieftasche auf:',
+    labelWallet: 'Adresse der Brieftasche:',
     btnNextText: 'Nächste > ',
     inputPlaceholder: 'zum beispiel',
     emptyInputAlert: 'Adresse der Brieftasche ist erforderlich',
