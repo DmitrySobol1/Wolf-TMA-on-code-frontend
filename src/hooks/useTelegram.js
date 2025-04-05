@@ -28,6 +28,6 @@ export const useTelegram = () => {
     // FIXME: расскоменти в проде
     tlgid: window.Telegram?.WebApp?.initDataUnsafe?.user.id,
     // vibrate,
-    vibrate: (type = 'light') => tg?.HapticFeedback?.impactOccurred(type),
+    vibrate: (type = 'light') => window.Telegram?.WebApp?.HapticFeedback?.impactOccurred(type),
   };
 };
