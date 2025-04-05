@@ -103,8 +103,6 @@ const Game = () => {
     }
   };
 
- 
-
   // для рендера
   useEffect(() => {
     axios
@@ -136,14 +134,12 @@ const Game = () => {
       })
       .finally(() => {
         setShowLoader(false);
-        setWolfButtonActive(true)
-        
+        setWolfButtonActive(true);
       });
   }, [isFirstEnter]);
 
-
-   // для отслеживания энергии
-   useEffect(() => {
+  // для отслеживания энергии
+  useEffect(() => {
     if (energy === 0) {
       console.log('энергии 0, en=', energy);
       setShowBottomModal(true);
@@ -151,9 +147,6 @@ const Game = () => {
       setWolfButtonActive(false);
     }
   }, [energy]);
-
-
-  
 
   return (
     <>
