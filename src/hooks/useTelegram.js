@@ -26,7 +26,8 @@ export const useTelegram = () => {
     user: window.Telegram?.WebApp?.initDataUnsafe?.user,
 
     // FIXME: расскоменти в проде
-    tlgid: window.Telegram?.WebApp?.initDataUnsafe?.user.id,
+    // tlgid: window.Telegram?.WebApp?.initDataUnsafe?.user.id,
+    tlgid : 999,
     // vibrate,
     vibrate: (type = 'light') => window.Telegram?.WebApp?.HapticFeedback?.impactOccurred(type),
   };
