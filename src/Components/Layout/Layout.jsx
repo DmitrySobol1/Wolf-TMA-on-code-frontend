@@ -3,7 +3,7 @@ import style from './Layout.module.css'
 import Game from '../Game/Game'
 import Referal from '../Referal/Referal'
 import Exchange from '../Exchange/Exchange'
-import Adminpage from '../Adminpage/Adminpage'
+import Adminpage from '../AdminPages/Adminpage'
 import { Routes, Route, Router } from "react-router";
 
 const Layout = () => {
